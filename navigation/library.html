@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>library</title>
+        <style>
+            #hamburger {
+                display: none;
+            }
+            nav {
+                display: block;
+            }
+            @media(max-width: 800px){
+                nav {
+                    display: none;
+                }
+                #hamburger {
+                    display: block;
+                }
+            }
+        </style>
+    </head>
+        <body>
+            <span id="hamburger">&#9776;</span>
+            <nav id="menu">
+            </nav>
+        </body>
+    <script>
+        const navigationMenu =
+            [
+                {
+                    "title": "home",
+                    "url" : "/"
+                },
+                {
+                    "title": "producten",
+                    "url" : "/producten/"
+                },
+                {
+                    "title": "over ons",
+                    "url" : "/overons/"
+                },
+                {
+                    "title": "contact",
+                    "url" : "/contact/"
+                },
+            ]
+        ;
+
+        function Navigatie (nav){
+            this.nav = nav;
+        }
+        Navigatie.prototype.maak = function () {
+            for(let i = 0; i < this.nav.length; i++) {
+                document.getElementById('menu').innerHTML += `<li><a href='${this.nav[i].url}'>${this.nav[i].title}</a></li>`;
+            }
+        };
+        const menu = new Navigatie(navigationMenu);
+        menu.maak();
+
+        document.getElementById('hamburger').addEventListener("click", function () {
+            if (document.getElementById('menu').style.display === 'block'){
+                document.getElementById('menu').style.display = 'none'
+            }else {
+                document.getElementById('menu').style.display = 'block'
+            }
+        })
+    </script>
+</html>
